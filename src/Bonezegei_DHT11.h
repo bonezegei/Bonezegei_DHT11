@@ -19,6 +19,8 @@ public:
   float getHumidity();
 
   int8_t _pin;
-  uint8_t data[6];
+  uint8_t data[5];
   unsigned long prevtime;
-}
+};
+
+#endif
