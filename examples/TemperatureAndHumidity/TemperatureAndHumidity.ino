@@ -7,7 +7,7 @@
   Tested using ESP32-WROOM32
 */
 
-#include "Bonezegei_DHT11.h"
+#include <Bonezegei_DHT11.h>
 
 //param = DHT11 signal pin
 Bonezegei_DHT11 dht(14);
