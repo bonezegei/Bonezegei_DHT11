@@ -1,7 +1,7 @@
 /*
   DHT11 Library
   Author: Bonezegei (Jofel Batutay)
-  Date : 
+  Date : November 2023
 */
 
 #include "Bonezegei_DHT11.h"
@@ -26,19 +26,13 @@ char Bonezegei_DHT11::begin() {
 }
 
 char Bonezegei_DHT11::getData() {
-  //uint8_t prevstate = HIGH;
-  int cnt = 0;
-  //unsigned long ctime;
-
   data[0] = data[1] = data[2] = data[3] = data[4] = 0;
-
   digitalWrite(_pin, HIGH);
   delay(250);
 
-  // now pull it low for ~20 milliseconds
   pinMode(_pin, OUTPUT);
   digitalWrite(_pin, LOW);
-  delay(20);
+  delay(18);
   noInterrupts();
   digitalWrite(_pin, HIGH);
   delayMicroseconds(40);
@@ -63,18 +57,34 @@ char Bonezegei_DHT11::getData() {
       }
     }
   }
- 
 
   interrupts();
+
+  data[5] = (data[0] + data[1] + data[2] + data[3]) & 0xff;
+  if (data[4] == data[5]) {
+    float t=(float)data[3] / 10;
+    _temperatureDeg = data[2] + t;
+    _temperatureFar = _temperatureDeg * 9 / 5 + 32;
+    _humidity = data[0];
+    return 1;
+  }
 
   return 0;
 }
 
 float Bonezegei_DHT11::getTemperature() {
-
-  return 0;
+  return _temperatureDeg;
 }
 
-float Bonezegei_DHT11::getHumidity() {
-  return 0;
+float Bonezegei_DHT11::getTemperature(bool fahrenheit){
+  if(fahrenheit){
+    return _temperatureFar;
+  }
+  else{
+    return _temperatureDeg;
+  }
+}
+
+int Bonezegei_DHT11::getHumidity() {
+   return _humidity;
 }
