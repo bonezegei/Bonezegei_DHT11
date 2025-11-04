@@ -1,0 +1,12 @@
+cff-version: 1.1.0
+message: "If you use this library, please cite it as below."
+title: "bonezegei/Bonezegei_DHT11: Version 1.0.2"
+authors:
+  - family-names: "Batutay"
+    given-names: "Jofel"
+    orcid: "https://orcid.org/0009-0007-1467-1947"
+version: "v1.0.2"
+doi: "10.5281/zenodo.14236865"
+date-released: 2024-11-28
+url: "https://github.com/bonezegei/Bonezegei_DHT11"
+                                
