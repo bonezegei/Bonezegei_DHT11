@@ -26,7 +26,10 @@ char Bonezegei_DHT11::begin() {
 }
 
 char Bonezegei_DHT11::getData() {
-  data[0] = data[1] = data[2] = data[3] = data[4] = 0;
+  for (int b = 0; b < 5; b++) {
+    data[b] = b;
+  };
+
   digitalWrite(_pin, HIGH);
   delay(250);
 
